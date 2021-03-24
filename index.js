@@ -95,7 +95,7 @@ Person.prototype.toString = function(){
   const Subaru = new Car('Outback', 19)
   Subaru.fill(20);
   Subaru.drive(100);
-  console.log(Subaru);
+  console.log('task 2--------------------------->', Subaru);
   /*
     TASK 3
       - Write a Baby constructor subclassing Person.
@@ -103,18 +103,30 @@ Person.prototype.toString = function(){
       - Besides the methods on Person.prototype, babies have the ability to `.play()`:
           + Should return a string "Playing with x", x being the favorite toy.
   */
- function Baby() {
-   
+
+
+ function Baby(name, age, favoriteToy) {
+   Person.call(this, name, age)
+   this.favoriteToy = favoriteToy;
   }
+
+Baby.prototype = Object.create(Person.prototype);
+
+Baby.prototype.play = function(){
+  return `Playing with ${this.favoriteToy}`
+};
+
+const kid1 = new Baby('Gabe', 2, "Hot Wheels");
+console.log('task 3----------------->', kid1.play());
  
   
   /* 
     TASK 4
     In your own words explain the four principles for the "this" keyword below:
-    1. 
-    2. 
-    3. 
-    4. 
+    1. Window Binding is essentially the global scope.  If 'this' is used in a global setting it will refer to the Window unless otherwise specified.
+    2. Implicit Binding is binding without really declaring what 'this' is going to be.  It works in the case of using 'this' in an object.  You don't have to tell the computer what you're talking about.
+    3. Explicit Binding is when you let the computer know what 'this' is referring to by using: call/apply/bond
+    4. New Binding is used with constructor functions.  It essentially creates an entirely new object modeled after the constructor and lets it know that 'this' is pointing to the newly created object.
   */
   
   
